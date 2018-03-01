@@ -11,8 +11,10 @@
  */
 const preorderTraversal = (root, arr) => {
   const array = arr || [];
-  if (root.val !== null) {
+  if (root !== null) {
     array.push(root.val);
+  } else {
+    return array;
   }
   if (root.left !== null) {
     preorderTraversal(root.left, array);
