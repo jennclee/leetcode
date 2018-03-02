@@ -14,15 +14,9 @@ const inorderTraversal = (node, arr) => {
   if (node === null) {
     return array;
   } else {
-    if (node.left !== null) {
-      array = inorderTraversal(node.left, array);
-    }
+    array = inorderTraversal(node.left, array);
     array.push(node.val);
-    if (node.right !== null) {
-      array = inorderTraversal(node.right, array);
-    } else {
-      return array;
-    }
+    array = inorderTraversal(node.right, array);
   }
   return array;
 };
