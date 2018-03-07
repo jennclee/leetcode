@@ -9,7 +9,32 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
+
 const levelOrder = (root) => {
+  const array = [];
+  if (root === null) {
+    return array;
+  }
+
+  const addNode = (root, level) => {
+    if (root === null) {
+      return;
+    } else {
+      if (array.length === level) {
+        array.push([]);
+      }
+      array[level].push(root.val);
+      addNode(root.left, level + 1);
+      addNode(root.right, level + 1);
+    }
+  }
+  addNode(root, 0);
+  return array;
+};
+ 
+ /*
+ === QUEUE VERSION WITHOUT LEVELS IN ARRAYS ===
+ const levelOrder = (root) => {
   const queue = [], array = [];
   queue.push(root);
   while (queue.length > 0) {
@@ -25,3 +50,4 @@ const levelOrder = (root) => {
   }
   return array;
 };
+*/
