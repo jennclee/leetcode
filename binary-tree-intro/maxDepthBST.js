@@ -16,27 +16,21 @@ Given binary tree [3,9,20,null,null,15,7], depth is 3.
  */
 
 const maxDepth = (root) => {
-  const stack = [];
-  stack.push(root);
-  let currentNode = stack[stack.length - 1];
   let depthCounter = 0;
-  let maxDepth = 0;
 
-  while (stack.length > 0) {
-    const node = currentNode;
-    if (node.left) {
-      stack.push(node.left);
-      depthCounter++;
+  const countDepth = (node, depth) => {
+    const d = depth || 0;
+    if (node === null) {
+      return;
+    } else {
+      if (!node.left && !node.right) {
+        depthCounter = Math.max(depthCounter, d);
+      }
+      countDepth(node.left, d + 1);
+      countDepth(node.right, d + 1);
     }
-    if (node.right) {
-      stack.push(node.right);
-      depthCounter++;
-    }
-    if (depthCounter > maxDepth) {
-      maxDepth = depthCounter;
-    }
-    currentNode = stack.pop();
   }
+  countDepth(root, 1);
   return depthCounter;
 };
 
